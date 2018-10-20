@@ -107,7 +107,6 @@ if ( ! class_exists( 'Gutenberg_Prototype' ) ) {
 		 * @return void
 		 */
 		public function load_hooks() {
-			add_action( 'plugins_loaded', array( $this, 'flush_update_cache' ) );
 			add_action( 'init', array( $this, 'load_text_domain' ), 0 );
 			add_filter( 'pre_set_site_transient_update_plugins', array( $this, 'api_check' ) );
 			add_filter( 'plugins_api', array( $this, 'get_plugin_info' ), 10, 3 );
@@ -123,16 +122,6 @@ if ( ! class_exists( 'Gutenberg_Prototype' ) ) {
 		public function load_text_domain() {
 			load_plugin_textdomain( 'gutenberg-prototype', false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
 		} // END load_text_domain()
-
-		/**
-		 * Run once the plugin has loaded to flush the update cache.
-		 *
-		 * @access public
-		 * @static
-		 */
-		public static function flush_update_cache() {
-			delete_site_transient( 'update_plugins' ); // Clear all plugin update data
-		} // END flush_update_cache()
 
 		/**
 		 * Checks if Gutenberg is installed.
