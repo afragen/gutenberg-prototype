@@ -246,7 +246,7 @@ if ( ! class_exists( 'Gutenberg_Prototype' ) ) {
 						// If the release is a pre-release then return the body.
 						if ( $release->prerelease ) {
 							if ( ! class_exists( 'Parsedown' ) ) {
-								include_once( 'parsedown.php' );
+								include_once( __DIR__ . '/vendor/parsedown.php' );
 							}
 							$Parsedown = new Parsedown();
 
